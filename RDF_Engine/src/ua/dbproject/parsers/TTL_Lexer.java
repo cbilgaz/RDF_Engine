@@ -1,5 +1,8 @@
-// Generated from SPARQLexer.g4 by ANTLR 4.1
+// Generated from TTL_.g4 by ANTLR 4.1
 package ua.dbproject.parsers;
+
+/** The TTL_Parser takes care of parsing TTL files that hold the RDF input data. */
+
 import org.antlr.v4.runtime.Lexer;
 import org.antlr.v4.runtime.CharStream;
 import org.antlr.v4.runtime.Token;
@@ -10,7 +13,7 @@ import org.antlr.v4.runtime.dfa.DFA;
 import org.antlr.v4.runtime.misc.*;
 
 @SuppressWarnings({"all", "warnings", "unchecked", "unused", "cast"})
-public class SPARQLexer extends Lexer {
+public class TTL_Lexer extends Lexer {
 	protected static final DFA[] _decisionToDFA;
 	protected static final PredictionContextCache _sharedContextCache =
 		new PredictionContextCache();
@@ -38,13 +41,13 @@ public class SPARQLexer extends Lexer {
 	};
 
 
-	public SPARQLexer(CharStream input) {
+	public TTL_Lexer(CharStream input) {
 		super(input);
 		_interp = new LexerATNSimulator(this,_ATN,_decisionToDFA,_sharedContextCache);
 	}
 
 	@Override
-	public String getGrammarFileName() { return "SPARQLexer.g4"; }
+	public String getGrammarFileName() { return "TTL_.g4"; }
 
 	@Override
 	public String[] getTokenNames() { return tokenNames; }

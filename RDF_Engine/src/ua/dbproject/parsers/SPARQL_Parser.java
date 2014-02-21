@@ -18,15 +18,14 @@ public class SPARQL_Parser extends Parser {
 	protected static final PredictionContextCache _sharedContextCache =
 		new PredictionContextCache();
 	public static final int
-		LT=1, GT=2, DOT=3, REF=4, SEMI=5, PLUS=6, COLON=7, COMMA=8, MINUS=9, LPAREN=10, 
-		RPAREN=11, QUESTION=12, LCBRACKET=13, RCBRACKET=14, SELECT=15, WHERE=16, 
-		NEWLINE=17, IDENT=18, LITERAL_LIBRARY=19, LITERAL_INT=20, LITERAL_FLOAT=21, 
-		LITERAL_STRING=22, WS=23, LINECOMMENT=24;
+		LT=1, GT=2, DOT=3, REF=4, SIGN=5, SEMI=6, COLON=7, COMMA=8, QUESTION=9, 
+		LPAREN=10, RPAREN=11, LCBRACKET=12, RCBRACKET=13, SELECT=14, WHERE=15, 
+		RESERVED=16, MARK=17, NEWLINE=18, IDENT=19, LITERAL_LIBRARY=20, LITERAL_INT=21, 
+		LITERAL_STRING=22, WS=23, COMMENT=24;
 	public static final String[] tokenNames = {
-		"<INVALID>", "'<'", "'>'", "'.'", "'&'", "';'", "'+'", "':'", "','", "'-'", 
-		"'('", "')'", "'?'", "'{'", "'}'", "'select'", "'where'", "NEWLINE", "IDENT", 
-		"LITERAL_LIBRARY", "LITERAL_INT", "LITERAL_FLOAT", "LITERAL_STRING", "WS", 
-		"LINECOMMENT"
+		"<INVALID>", "'<'", "'>'", "'.'", "'&'", "'#'", "';'", "':'", "','", "'?'", 
+		"'('", "')'", "'{'", "'}'", "SELECT", "WHERE", "RESERVED", "MARK", "NEWLINE", 
+		"IDENT", "LITERAL_LIBRARY", "LITERAL_INT", "LITERAL_STRING", "WS", "COMMENT"
 	};
 	public static final int
 		RULE_prog = 0, RULE_expr = 1;
@@ -52,6 +51,7 @@ public class SPARQL_Parser extends Parser {
 	}
 	public static class ProgContext extends ParserRuleContext {
 		public TerminalNode NEWLINE() { return getToken(SPARQL_Parser.NEWLINE, 0); }
+		public TerminalNode EOF() { return getToken(SPARQL_Parser.EOF, 0); }
 		public ExprContext expr() {
 			return getRuleContext(ExprContext.class,0);
 		}
@@ -77,6 +77,7 @@ public class SPARQL_Parser extends Parser {
 			{
 			setState(4); expr();
 			setState(5); match(NEWLINE);
+			setState(6); match(EOF);
 			}
 		}
 		catch (RecognitionException re) {
@@ -112,7 +113,7 @@ public class SPARQL_Parser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(7); match(LITERAL_INT);
+			setState(8); match(LITERAL_INT);
 			}
 		}
 		catch (RecognitionException re) {
@@ -127,9 +128,10 @@ public class SPARQL_Parser extends Parser {
 	}
 
 	public static final String _serializedATN =
-		"\3\uacf5\uee8c\u4f5d\u8b0d\u4a45\u78bd\u1b2f\u3378\3\32\f\4\2\t\2\4\3"+
-		"\t\3\3\2\3\2\3\2\3\3\3\3\3\3\2\4\2\4\2\2\t\2\6\3\2\2\2\4\t\3\2\2\2\6\7"+
-		"\5\4\3\2\7\b\7\23\2\2\b\3\3\2\2\2\t\n\7\26\2\2\n\5\3\2\2\2\2";
+		"\3\uacf5\uee8c\u4f5d\u8b0d\u4a45\u78bd\u1b2f\u3378\3\32\r\4\2\t\2\4\3"+
+		"\t\3\3\2\3\2\3\2\3\2\3\3\3\3\3\3\2\4\2\4\2\2\n\2\6\3\2\2\2\4\n\3\2\2\2"+
+		"\6\7\5\4\3\2\7\b\7\24\2\2\b\t\7\2\2\3\t\3\3\2\2\2\n\13\7\27\2\2\13\5\3"+
+		"\2\2\2\2";
 	public static final ATN _ATN =
 		ATNSimulator.deserialize(_serializedATN.toCharArray());
 	static {

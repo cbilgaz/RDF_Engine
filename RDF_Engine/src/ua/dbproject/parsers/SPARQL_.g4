@@ -11,5 +11,5 @@ options {
 // SPARQL QUERY ...
 
 // trivial grammar ...
-prog:	expr NEWLINE ;
+prog:	expr NEWLINE EOF;
 expr:	LITERAL_INT ;
