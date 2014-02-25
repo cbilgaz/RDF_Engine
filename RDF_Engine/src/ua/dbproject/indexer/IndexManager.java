@@ -14,7 +14,8 @@ public abstract class IndexManager {
 
 	public static IndexManager getInstance() {
 		// if (singletonInstance == null)
-		// singletonInstance = ... instantiate with your implementation of IndexManager
+		// singletonInstance = ... instantiate with your implementation of
+		// IndexManager
 		return singletonInstance;
 	}
 
