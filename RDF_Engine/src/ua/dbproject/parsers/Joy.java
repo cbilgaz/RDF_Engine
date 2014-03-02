@@ -14,6 +14,8 @@ import org.antlr.v4.runtime.RuleContext;
 import org.antlr.v4.runtime.tree.ErrorNode;
 import org.antlr.v4.runtime.tree.ParseTreeWalker;
 
+import ua.dbproject.parsers.SPARQL_Parser.DefprefixContext;
+
 /**
  * The Class Joy.
  */
@@ -28,10 +30,11 @@ public class Joy {
 		Map<String, String> props = new OrderedHashMap<String, String>();
 
 		@Override
-		public void exitProg(SPARQL_Parser.ProgContext ctx) {
-			String id = ctx.expr().getText(); // prop : 12313 '\n' ;
+		public void exitDefprefix(DefprefixContext ctx) {
+			String id = ctx.getText(); // prop : 12313 '\n' ;
 			props.put(id, ctx.NEWLINE().getText());
 		}
+
 	}
 
 	/**
@@ -47,13 +50,13 @@ public class Joy {
 		ErrorListener errorListenner = new ErrorListener();
 
 		ANTLRInputStream input = new ANTLRInputStream(
-				"# started http://yago-knowledge.org 2013-07-10T03:11:48Z\n21s31\n");
+				"PREFIX dbpedia-owl: <http://dbpedia.org/ontology/>\n");
 		SPARQLexer lexer = new SPARQLexer(input);
 		CommonTokenStream tokens = new CommonTokenStream(lexer);
 		SPARQL_Parser parser = new SPARQL_Parser(tokens);
 		parser.removeErrorListeners();
 		parser.addErrorListener(errorListenner);
-		RuleContext tree = parser.prog();
+		RuleContext tree = parser.defprefix();
 
 		// ParseTree tree = parser.prog(); //ParseTree -> RuleContext
 		// create a standard ANTLR parse tree walker
