@@ -12,32 +12,38 @@ query
 	: defprefix* selectQuery  EOF
 	;
 	
-defprefix //SUPPORT : PREFIX dbpedia-owl: <http://dbpedia.org/ontology/>\n
-	: PREFIX prefixnames COLON HTML_STRING NEWLINE
+//SUPPORT : PREFIX dbpedia-owl: <http://dbpedia.org/ontology/>\n	
+defprefix 
+	: PREFIX prefixnames HTML_STRING NEWLINE
 	; 
 
 prefixnames 
-	: prefixname*
+	: prefixname* COLON
 	;
+	
 prefixname
 	: MARK 
 	| IDENT
 	;  
 	
 selectQuery
-	: SELECT DISTINCT? ( variable (COMMA variable)* | ASTERISK ) datasetClause*
+	: SELECT DISTINCT? ( variables | ASTERISK ) datasetClause*
+	;
+
+variables
+	: variable (COMMA variable)*
 	;
 	
 variable
-	: questinvar | dolarvar
+	: questionvar | dolarvar
 	;
 
-questinvar
-    : '?' IDENT
+questionvar
+    : QUESTION IDENT 
     ;
 
 dolarvar
-    : '$' IDENT
+    : DOLAR IDENT
     ;
 
 datasetClause 

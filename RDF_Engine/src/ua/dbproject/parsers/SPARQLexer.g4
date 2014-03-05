@@ -22,6 +22,7 @@ RCBRACKET		: '}'   ;
 AND				: '&&'  ;
 OR			    : '||'  ;
 ASTERISK		: '*'	;
+DOLAR			: '$'	;
 		
 /*
 * ---------------------------------
@@ -71,10 +72,6 @@ fragment LETTER
 fragment MARKS
 		: '-' | '_' | '.' | '!' | '~' | '*' | '\'' | '(' | ')'
 		;
-
-fragment Q_RESERVED
-		: ';' | '/' | '?' | ':' | '@' | '+' | '$' | ','
-		;
 		
 fragment TAG : '<'.*?'>';
 
@@ -82,10 +79,6 @@ fragment TAG : '<'.*?'>';
 // Provide : <http://dbpedia.org/ontology/>
 HTML_STRING 
 		: '<'(TAG|~[<>])*'>';
-
-RESERVED
-		: Q_RESERVED+
-		;
 		
 MARK
 		: MARKS+
