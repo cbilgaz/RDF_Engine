@@ -12,7 +12,7 @@ query
 	: defprefix* selectQuery NEWLINE? EOF 
 	;
 	
-//SUPPORT : PREFIX dbpedia-owl: <http://dbpedia.org/ontology/>\n	
+//SUPPORT : PREFIX dbpedia-owl: <http://dbpedia.org/ontology/> .? \n	
 defprefix 
 	: PREFIX prefixname HTML_STRING DOT? NEWLINE
 	; 
@@ -47,7 +47,7 @@ whereClause
     ;
 
 groupGraphPattern
-	: LCBRACKET NEWLINE? ( groupGraphPatternSub ) RCBRACKET 
+	: LCBRACKET NEWLINE? groupGraphPatternSub RCBRACKET 
 	;
 
 groupGraphPatternSub

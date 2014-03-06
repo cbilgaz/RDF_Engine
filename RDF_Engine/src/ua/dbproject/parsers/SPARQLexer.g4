@@ -9,9 +9,7 @@ lexer grammar SPARQLexer;
 LT         		: '<'   ;
 GT         		: '>'   ;
 DOT        		: '.'   ;
-REF		   	    : '&'   ;
-SIGN			: '#'   ;	
-SEMI       		: ';'   ;
+SIGN			: '#'   ;
 COLON      		: ':'   ;		
 COMMA      		: ','   ;
 QUESTION		: '?'	;		
@@ -19,8 +17,6 @@ LPAREN     		: '('   ;
 RPAREN     		: ')'   ;
 LCBRACKET		: '{'   ; 
 RCBRACKET		: '}'   ;
-AND				: '&&'  ;
-OR			    : '||'  ;
 ASTERISK		: '*'	;
 DOLAR			: '$'	;
 		
@@ -38,7 +34,6 @@ PREFIX		:   [Pp][Rr][Ee][Ff][Ii][Xx];
 *           LITERALS
 *---------------------------------
 */
-
 fragment DIGITS  
   		:   '0'..'9'
   		;
@@ -71,10 +66,6 @@ MARK_STRING
 		;
 
 NEWLINE : '\r'? '\n' ;
-
-//IDENT  
-//  		: LETTER+   
-// 		; 
 					
 LITERAL_INT
   		: DIGITS+
