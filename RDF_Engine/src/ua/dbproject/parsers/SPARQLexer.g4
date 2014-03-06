@@ -31,22 +31,8 @@ DOLAR			: '$'	;
 */
 SELECT 		: 	[Ss][Ee][Ll][Ee][Cc][Tt];
 WHERE		:	[Ww][Hh][Ee][Rr][Ee];
-BASE	    : 	[Bb][Aa][Ss][Ee];
 DISTINCT    : 	[Dd][Ii][Ss][Tt][Ii][Nn][Cc][Tt];
-FROM		: 	[Fr][Rr][Oo][Mm];
 PREFIX		:   [Pp][Rr][Ee][Ff][Ii][Xx];
-ORDER	    : 	[Oo][Rr][Dd][Ee][Rr];
-ASC		    : 	[Aa][Ss][Cc];
-DESC	    : 	[Dd][Ee][Ss][Cc];
-LIMIT	    : 	[Ll][Ii][Mm][Ii][Tt];
-UNION		: 	[Uu][Nn][Ii][Oo][Nn];
-COUNT		: 	[Cc][Oo][Uu][Nn][Tt];
-SUM			:	[Ss][Uu][Mm];
-MIN			:	[Mm][Ii][Nn];
-MAX			:	[Mm][Aa][Xx];
-AVG			:	[Aa][Vv][Gg];
-TRUE	    : 	[Tt][Rr][Uu][Ee];
-FALSE	    : 	[Ff][Aa][Ll][Ss][Ee];
 /*
 * --------------------------------
 *           LITERALS
@@ -70,8 +56,8 @@ fragment LETTER
   		;
   		
 fragment MARKS
-		: '-' | '_' 
-		;
+ 		: '-' | '_' | UPPERLETTER | LOWERLETTER | ':'
+  		;
 		
 fragment TAG : '<'.*?'>';
 
@@ -81,14 +67,14 @@ HTML_STRING
 		: '<'(TAG|~[<>])*'>';
 		
 MARK_STRING
-		: (MARKS | IDENT)
+		: MARKS+
 		;
 
 NEWLINE : '\r'? '\n' ;
 
-IDENT  
-  		: LETTER+   
-  		; 
+//IDENT  
+//  		: LETTER+   
+// 		; 
 					
 LITERAL_INT
   		: DIGITS+

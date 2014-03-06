@@ -9,24 +9,25 @@ options {
 
 // SPARQL QUERY ...
 query 
-	: defprefix* selectQuery  EOF
+	: defprefix* selectQuery NEWLINE? EOF 
 	;
 	
 //SUPPORT : PREFIX dbpedia-owl: <http://dbpedia.org/ontology/>\n	
 defprefix 
-	: PREFIX prefixname HTML_STRING NEWLINE
+	: PREFIX prefixname HTML_STRING DOT? NEWLINE
 	; 
 
 prefixname
-	: MARK_STRING* COLON
+	: MARK_STRING
 	;
 	
 selectQuery
-	: SELECT DISTINCT? ( variables | ASTERISK ) datasetClause?
+	: SELECT DISTINCT? ( variables | ASTERISK ) NEWLINE? whereClause 
 	;
 
+//$station, ?name
 variables
-	: variable (COMMA variable)*
+	: variable (COMMA? variable)*
 	;
 	
 variable
@@ -34,18 +35,37 @@ variable
 	;
 
 questionvar
-    : QUESTION IDENT 
+    : QUESTION MARK_STRING
     ;
 
 dolarvar
-    : DOLAR IDENT
+    : DOLAR MARK_STRING
     ;
 
-datasetClause 
-	: FROM defaultGraphClause
+whereClause
+    : WHERE? groupGraphPattern
+    ;
+
+groupGraphPattern
+	: LCBRACKET NEWLINE? ( groupGraphPatternSub ) RCBRACKET 
 	;
-	
-defaultGraphClause: sourceSelector ;
 
-sourceSelector: ;
+groupGraphPatternSub
+	: triplesBlock ( triplesBlock )*
+    ;
+    
+triplesBlock
+    : subject predicate object DOT NEWLINE?
+    ;
+    
+predicate
+	: variables | HTML_STRING | MARK_STRING | LITERAL_STRING
+	;
 
+subject
+	: variables | HTML_STRING | MARK_STRING | LITERAL_STRING
+	;
+
+object
+	: variables | HTML_STRING | MARK_STRING | LITERAL_STRING
+	;

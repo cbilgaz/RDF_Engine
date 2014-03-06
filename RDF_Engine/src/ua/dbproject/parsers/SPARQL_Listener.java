@@ -12,48 +12,37 @@ import org.antlr.v4.runtime.tree.ParseTreeListener;
  */
 public interface SPARQL_Listener extends ParseTreeListener {
 	/**
-	 * Enter a parse tree produced by {@link SPARQL_Parser#dolarvar}.
+	 * Enter a parse tree produced by {@link SPARQL_Parser#whereClause}.
 	 * @param ctx the parse tree
 	 */
-	void enterDolarvar(@NotNull SPARQL_Parser.DolarvarContext ctx);
+	void enterWhereClause(@NotNull SPARQL_Parser.WhereClauseContext ctx);
 	/**
-	 * Exit a parse tree produced by {@link SPARQL_Parser#dolarvar}.
+	 * Exit a parse tree produced by {@link SPARQL_Parser#whereClause}.
 	 * @param ctx the parse tree
 	 */
-	void exitDolarvar(@NotNull SPARQL_Parser.DolarvarContext ctx);
+	void exitWhereClause(@NotNull SPARQL_Parser.WhereClauseContext ctx);
 
 	/**
-	 * Enter a parse tree produced by {@link SPARQL_Parser#defaultGraphClause}.
+	 * Enter a parse tree produced by {@link SPARQL_Parser#groupGraphPatternSub}.
 	 * @param ctx the parse tree
 	 */
-	void enterDefaultGraphClause(@NotNull SPARQL_Parser.DefaultGraphClauseContext ctx);
+	void enterGroupGraphPatternSub(@NotNull SPARQL_Parser.GroupGraphPatternSubContext ctx);
 	/**
-	 * Exit a parse tree produced by {@link SPARQL_Parser#defaultGraphClause}.
+	 * Exit a parse tree produced by {@link SPARQL_Parser#groupGraphPatternSub}.
 	 * @param ctx the parse tree
 	 */
-	void exitDefaultGraphClause(@NotNull SPARQL_Parser.DefaultGraphClauseContext ctx);
+	void exitGroupGraphPatternSub(@NotNull SPARQL_Parser.GroupGraphPatternSubContext ctx);
 
 	/**
-	 * Enter a parse tree produced by {@link SPARQL_Parser#datasetClause}.
+	 * Enter a parse tree produced by {@link SPARQL_Parser#subject}.
 	 * @param ctx the parse tree
 	 */
-	void enterDatasetClause(@NotNull SPARQL_Parser.DatasetClauseContext ctx);
+	void enterSubject(@NotNull SPARQL_Parser.SubjectContext ctx);
 	/**
-	 * Exit a parse tree produced by {@link SPARQL_Parser#datasetClause}.
+	 * Exit a parse tree produced by {@link SPARQL_Parser#subject}.
 	 * @param ctx the parse tree
 	 */
-	void exitDatasetClause(@NotNull SPARQL_Parser.DatasetClauseContext ctx);
-
-	/**
-	 * Enter a parse tree produced by {@link SPARQL_Parser#prefixname}.
-	 * @param ctx the parse tree
-	 */
-	void enterPrefixname(@NotNull SPARQL_Parser.PrefixnameContext ctx);
-	/**
-	 * Exit a parse tree produced by {@link SPARQL_Parser#prefixname}.
-	 * @param ctx the parse tree
-	 */
-	void exitPrefixname(@NotNull SPARQL_Parser.PrefixnameContext ctx);
+	void exitSubject(@NotNull SPARQL_Parser.SubjectContext ctx);
 
 	/**
 	 * Enter a parse tree produced by {@link SPARQL_Parser#query}.
@@ -67,15 +56,15 @@ public interface SPARQL_Listener extends ParseTreeListener {
 	void exitQuery(@NotNull SPARQL_Parser.QueryContext ctx);
 
 	/**
-	 * Enter a parse tree produced by {@link SPARQL_Parser#sourceSelector}.
+	 * Enter a parse tree produced by {@link SPARQL_Parser#predicate}.
 	 * @param ctx the parse tree
 	 */
-	void enterSourceSelector(@NotNull SPARQL_Parser.SourceSelectorContext ctx);
+	void enterPredicate(@NotNull SPARQL_Parser.PredicateContext ctx);
 	/**
-	 * Exit a parse tree produced by {@link SPARQL_Parser#sourceSelector}.
+	 * Exit a parse tree produced by {@link SPARQL_Parser#predicate}.
 	 * @param ctx the parse tree
 	 */
-	void exitSourceSelector(@NotNull SPARQL_Parser.SourceSelectorContext ctx);
+	void exitPredicate(@NotNull SPARQL_Parser.PredicateContext ctx);
 
 	/**
 	 * Enter a parse tree produced by {@link SPARQL_Parser#defprefix}.
@@ -89,15 +78,15 @@ public interface SPARQL_Listener extends ParseTreeListener {
 	void exitDefprefix(@NotNull SPARQL_Parser.DefprefixContext ctx);
 
 	/**
-	 * Enter a parse tree produced by {@link SPARQL_Parser#questinvar}.
+	 * Enter a parse tree produced by {@link SPARQL_Parser#object}.
 	 * @param ctx the parse tree
 	 */
-	void enterQuestinvar(@NotNull SPARQL_Parser.QuestinvarContext ctx);
+	void enterObject(@NotNull SPARQL_Parser.ObjectContext ctx);
 	/**
-	 * Exit a parse tree produced by {@link SPARQL_Parser#questinvar}.
+	 * Exit a parse tree produced by {@link SPARQL_Parser#object}.
 	 * @param ctx the parse tree
 	 */
-	void exitQuestinvar(@NotNull SPARQL_Parser.QuestinvarContext ctx);
+	void exitObject(@NotNull SPARQL_Parser.ObjectContext ctx);
 
 	/**
 	 * Enter a parse tree produced by {@link SPARQL_Parser#selectQuery}.
@@ -111,15 +100,70 @@ public interface SPARQL_Listener extends ParseTreeListener {
 	void exitSelectQuery(@NotNull SPARQL_Parser.SelectQueryContext ctx);
 
 	/**
-	 * Enter a parse tree produced by {@link SPARQL_Parser#prefixnames}.
+	 * Enter a parse tree produced by {@link SPARQL_Parser#variables}.
 	 * @param ctx the parse tree
 	 */
-	void enterPrefixnames(@NotNull SPARQL_Parser.PrefixnamesContext ctx);
+	void enterVariables(@NotNull SPARQL_Parser.VariablesContext ctx);
 	/**
-	 * Exit a parse tree produced by {@link SPARQL_Parser#prefixnames}.
+	 * Exit a parse tree produced by {@link SPARQL_Parser#variables}.
 	 * @param ctx the parse tree
 	 */
-	void exitPrefixnames(@NotNull SPARQL_Parser.PrefixnamesContext ctx);
+	void exitVariables(@NotNull SPARQL_Parser.VariablesContext ctx);
+
+	/**
+	 * Enter a parse tree produced by {@link SPARQL_Parser#dolarvar}.
+	 * @param ctx the parse tree
+	 */
+	void enterDolarvar(@NotNull SPARQL_Parser.DolarvarContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link SPARQL_Parser#dolarvar}.
+	 * @param ctx the parse tree
+	 */
+	void exitDolarvar(@NotNull SPARQL_Parser.DolarvarContext ctx);
+
+	/**
+	 * Enter a parse tree produced by {@link SPARQL_Parser#triplesBlock}.
+	 * @param ctx the parse tree
+	 */
+	void enterTriplesBlock(@NotNull SPARQL_Parser.TriplesBlockContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link SPARQL_Parser#triplesBlock}.
+	 * @param ctx the parse tree
+	 */
+	void exitTriplesBlock(@NotNull SPARQL_Parser.TriplesBlockContext ctx);
+
+	/**
+	 * Enter a parse tree produced by {@link SPARQL_Parser#prefixname}.
+	 * @param ctx the parse tree
+	 */
+	void enterPrefixname(@NotNull SPARQL_Parser.PrefixnameContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link SPARQL_Parser#prefixname}.
+	 * @param ctx the parse tree
+	 */
+	void exitPrefixname(@NotNull SPARQL_Parser.PrefixnameContext ctx);
+
+	/**
+	 * Enter a parse tree produced by {@link SPARQL_Parser#groupGraphPattern}.
+	 * @param ctx the parse tree
+	 */
+	void enterGroupGraphPattern(@NotNull SPARQL_Parser.GroupGraphPatternContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link SPARQL_Parser#groupGraphPattern}.
+	 * @param ctx the parse tree
+	 */
+	void exitGroupGraphPattern(@NotNull SPARQL_Parser.GroupGraphPatternContext ctx);
+
+	/**
+	 * Enter a parse tree produced by {@link SPARQL_Parser#questionvar}.
+	 * @param ctx the parse tree
+	 */
+	void enterQuestionvar(@NotNull SPARQL_Parser.QuestionvarContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link SPARQL_Parser#questionvar}.
+	 * @param ctx the parse tree
+	 */
+	void exitQuestionvar(@NotNull SPARQL_Parser.QuestionvarContext ctx);
 
 	/**
 	 * Enter a parse tree produced by {@link SPARQL_Parser#variable}.

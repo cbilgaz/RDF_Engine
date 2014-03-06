@@ -20,17 +20,14 @@ public class TTL_Parser extends Parser {
 	public static final int
 		LT=1, GT=2, DOT=3, REF=4, SIGN=5, SEMI=6, COLON=7, COMMA=8, QUESTION=9, 
 		LPAREN=10, RPAREN=11, LCBRACKET=12, RCBRACKET=13, AND=14, OR=15, ASTERISK=16, 
-		SELECT=17, WHERE=18, BASE=19, DISTINCT=20, FROM=21, PREFIX=22, ORDER=23, 
-		ASC=24, DESC=25, LIMIT=26, UNION=27, COUNT=28, SUM=29, MIN=30, MAX=31, 
-		AVG=32, TRUE=33, FALSE=34, HTML_STRING=35, RESERVED=36, MARK=37, NEWLINE=38, 
-		IDENT=39, LITERAL_INT=40, LITERAL_STRING=41, WS=42, COMMENT=43;
+		DOLAR=17, SELECT=18, WHERE=19, DISTINCT=20, PREFIX=21, HTML_STRING=22, 
+		MARK_STRING=23, NEWLINE=24, LITERAL_INT=25, LITERAL_STRING=26, WS=27, 
+		COMMENT=28;
 	public static final String[] tokenNames = {
 		"<INVALID>", "'<'", "'>'", "'.'", "'&'", "'#'", "';'", "':'", "','", "'?'", 
-		"'('", "')'", "'{'", "'}'", "'&&'", "'||'", "'*'", "SELECT", "WHERE", 
-		"BASE", "DISTINCT", "FROM", "PREFIX", "ORDER", "ASC", "DESC", "LIMIT", 
-		"UNION", "COUNT", "SUM", "MIN", "MAX", "AVG", "TRUE", "FALSE", "HTML_STRING", 
-		"RESERVED", "MARK", "NEWLINE", "IDENT", "LITERAL_INT", "LITERAL_STRING", 
-		"WS", "COMMENT"
+		"'('", "')'", "'{'", "'}'", "'&&'", "'||'", "'*'", "'$'", "SELECT", "WHERE", 
+		"DISTINCT", "PREFIX", "HTML_STRING", "MARK_STRING", "NEWLINE", "LITERAL_INT", 
+		"LITERAL_STRING", "WS", "COMMENT"
 	};
 	public static final int
 		RULE_prog = 0, RULE_expr = 1;
@@ -133,10 +130,10 @@ public class TTL_Parser extends Parser {
 	}
 
 	public static final String _serializedATN =
-		"\3\uacf5\uee8c\u4f5d\u8b0d\u4a45\u78bd\u1b2f\u3378\3-\r\4\2\t\2\4\3\t"+
-		"\3\3\2\3\2\3\2\3\2\3\3\3\3\3\3\2\4\2\4\2\2\n\2\6\3\2\2\2\4\n\3\2\2\2\6"+
-		"\7\5\4\3\2\7\b\7(\2\2\b\t\7\2\2\3\t\3\3\2\2\2\n\13\7*\2\2\13\5\3\2\2\2"+
-		"\2";
+		"\3\uacf5\uee8c\u4f5d\u8b0d\u4a45\u78bd\u1b2f\u3378\3\36\r\4\2\t\2\4\3"+
+		"\t\3\3\2\3\2\3\2\3\2\3\3\3\3\3\3\2\4\2\4\2\2\n\2\6\3\2\2\2\4\n\3\2\2\2"+
+		"\6\7\5\4\3\2\7\b\7\32\2\2\b\t\7\2\2\3\t\3\3\2\2\2\n\13\7\33\2\2\13\5\3"+
+		"\2\2\2\2";
 	public static final ATN _ATN =
 		ATNSimulator.deserialize(_serializedATN.toCharArray());
 	static {

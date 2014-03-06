@@ -5,7 +5,7 @@ lexer grammar SPARQLexer;
 *          		OPERANDS
 * ------------------------------------ 
 */
-
+  
 LT         		: '<'   ;
 GT         		: '>'   ;
 DOT        		: '.'   ;
@@ -18,22 +18,27 @@ QUESTION		: '?'	;
 LPAREN     		: '('   ;
 RPAREN     		: ')'   ;
 LCBRACKET		: '{'   ; 
-RCBRACKET		: '}'   ;	
+RCBRACKET		: '}'   ;
+AND				: '&&'  ;
+OR			    : '||'  ;
+ASTERISK		: '*'	;
+DOLAR			: '$'	;
 		
 /*
 * ---------------------------------
 *        		  KEY WORDS
 * ---------------------------------
 */
-//supporting SELECT, select, SeLecT, likewise for WHERE, where, WheRe
-SELECT 		: 	('S'|'s')('E'|'e')('L'|'l')('E'|'e')('C'|'c')('T'|'t');
-WHERE		:	('W'|'w')('H'|'h')('E'|'e')('R'|'r')('E'|'e');
-
+SELECT 		: 	[Ss][Ee][Ll][Ee][Cc][Tt];
+WHERE		:	[Ww][Hh][Ee][Rr][Ee];
+DISTINCT    : 	[Dd][Ii][Ss][Tt][Ii][Nn][Cc][Tt];
+PREFIX		:   [Pp][Rr][Ee][Ff][Ii][Xx];
 /*
 * --------------------------------
 *           LITERALS
 *---------------------------------
 */
+
 fragment DIGITS  
   		:   '0'..'9'
   		;
@@ -51,30 +56,25 @@ fragment LETTER
   		;
   		
 fragment MARKS
-		: '-' | '_' | '.' | '!' | '~' | '*' | '\'' | '(' | ')'
-		;
-
-fragment Q_RESERVED
-		: ';' | '/' | '?' | ':' | '@' | '+' | '$' | ','
-		;
-  		
-RESERVED
-		: Q_RESERVED+
-		;
+ 		: '-' | '_' | UPPERLETTER | LOWERLETTER | ':'
+  		;
 		
-MARK
+fragment TAG : '<'.*?'>';
+
+
+// Provide : <http://dbpedia.org/ontology/>
+HTML_STRING 
+		: '<'(TAG|~[<>])*'>';
+		
+MARK_STRING
 		: MARKS+
 		;
 
-NEWLINE : [\r\n]+ ;
+NEWLINE : '\r'? '\n' ;
 
-IDENT  
-  		: LETTER (LETTER | DIGITS)*   
-  		;  
-  		
-LITERAL_LIBRARY
-		: LETTER+
-		;  
+//IDENT  
+//  		: LETTER+   
+// 		; 
 					
 LITERAL_INT
   		: DIGITS+
