@@ -14,20 +14,15 @@ query
 	
 //SUPPORT : PREFIX dbpedia-owl: <http://dbpedia.org/ontology/>\n	
 defprefix 
-	: PREFIX prefixnames HTML_STRING NEWLINE
+	: PREFIX prefixname HTML_STRING NEWLINE
 	; 
 
-prefixnames 
-	: prefixname* COLON
+prefixname
+	: MARK_STRING* COLON
 	;
 	
-prefixname
-	: MARK 
-	| IDENT
-	;  
-	
 selectQuery
-	: SELECT DISTINCT? ( variables | ASTERISK ) datasetClause*
+	: SELECT DISTINCT? ( variables | ASTERISK ) datasetClause?
 	;
 
 variables

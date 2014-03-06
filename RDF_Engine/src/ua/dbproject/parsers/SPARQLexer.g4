@@ -70,7 +70,7 @@ fragment LETTER
   		;
   		
 fragment MARKS
-		: '-' | '_' | '.' | '!' | '~' | '*' | '\'' | '(' | ')'
+		: '-' | '_' 
 		;
 		
 fragment TAG : '<'.*?'>';
@@ -80,8 +80,8 @@ fragment TAG : '<'.*?'>';
 HTML_STRING 
 		: '<'(TAG|~[<>])*'>';
 		
-MARK
-		: MARKS+
+MARK_STRING
+		: (MARKS | IDENT)
 		;
 
 NEWLINE : '\r'? '\n' ;
