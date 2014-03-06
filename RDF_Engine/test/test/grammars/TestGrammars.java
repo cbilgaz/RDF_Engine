@@ -36,7 +36,7 @@ public class TestGrammars {
 
 		@Override
 		public void exitDefprefix(DefprefixContext ctx) {
-			String id = ctx.prefixnames().getText();
+			String id = ctx.prefixname().getText();
 			props.put(id, ctx.HTML_STRING().getText());
 		}
 
@@ -48,10 +48,11 @@ public class TestGrammars {
 			while (ite.hasNext()) {
 				VariableContext var = ite.next();
 				if (var.dolarvar() != null) {
-					props.put(String.valueOf(count), "$" + var.toString());
+					props.put(String.valueOf(count), "$"
+							+ var.dolarvar().MARK_STRING());
 				} else {
 					props.put(String.valueOf(count), "?"
-							+ var.questionvar().IDENT());
+							+ var.questionvar().MARK_STRING());
 				}
 				count++;
 			}
