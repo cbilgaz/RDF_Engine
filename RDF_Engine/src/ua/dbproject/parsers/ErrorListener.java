@@ -30,19 +30,6 @@ public class ErrorListener extends BaseErrorListener {
 	/*
 	 * as long as a syntax error appears in the grammars, this method is being
 	 * invoked!
-	 * 
-	 * @see
-	 * org.antlr.v4.runtime.BaseErrorListener#syntaxError(org.antlr.v4.runtime
-	 * .Recognizer, java.lang.Object, int, int, java.lang.String,
-	 * org.antlr.v4.runtime.RecognitionException)
-	 */
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see
-	 * org.antlr.v4.runtime.BaseErrorListener#syntaxError(org.antlr.v4.runtime
-	 * .Recognizer, java.lang.Object, int, int, java.lang.String,
-	 * org.antlr.v4.runtime.RecognitionException)
 	 */
 	@Override
 	public void syntaxError(Recognizer<?, ?> recognizer,

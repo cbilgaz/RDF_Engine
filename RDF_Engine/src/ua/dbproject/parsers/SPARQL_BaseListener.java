@@ -20,26 +20,143 @@ public class SPARQL_BaseListener implements SPARQL_Listener {
 	 * <p/>
 	 * The default implementation does nothing.
 	 */
-	@Override public void enterProg(@NotNull SPARQL_Parser.ProgContext ctx) { }
+	@Override public void enterDolarvar(@NotNull SPARQL_Parser.DolarvarContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 * <p/>
 	 * The default implementation does nothing.
 	 */
-	@Override public void exitProg(@NotNull SPARQL_Parser.ProgContext ctx) { }
+	@Override public void exitDolarvar(@NotNull SPARQL_Parser.DolarvarContext ctx) { }
 
 	/**
 	 * {@inheritDoc}
 	 * <p/>
 	 * The default implementation does nothing.
 	 */
-	@Override public void enterExpr(@NotNull SPARQL_Parser.ExprContext ctx) { }
+	@Override public void enterDefaultGraphClause(@NotNull SPARQL_Parser.DefaultGraphClauseContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 * <p/>
 	 * The default implementation does nothing.
 	 */
-	@Override public void exitExpr(@NotNull SPARQL_Parser.ExprContext ctx) { }
+	@Override public void exitDefaultGraphClause(@NotNull SPARQL_Parser.DefaultGraphClauseContext ctx) { }
+
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
+	@Override public void enterDatasetClause(@NotNull SPARQL_Parser.DatasetClauseContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
+	@Override public void exitDatasetClause(@NotNull SPARQL_Parser.DatasetClauseContext ctx) { }
+
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
+	@Override public void enterPrefixname(@NotNull SPARQL_Parser.PrefixnameContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
+	@Override public void exitPrefixname(@NotNull SPARQL_Parser.PrefixnameContext ctx) { }
+
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
+	@Override public void enterQuery(@NotNull SPARQL_Parser.QueryContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
+	@Override public void exitQuery(@NotNull SPARQL_Parser.QueryContext ctx) { }
+
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
+	@Override public void enterSourceSelector(@NotNull SPARQL_Parser.SourceSelectorContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
+	@Override public void exitSourceSelector(@NotNull SPARQL_Parser.SourceSelectorContext ctx) { }
+
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
+	@Override public void enterDefprefix(@NotNull SPARQL_Parser.DefprefixContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
+	@Override public void exitDefprefix(@NotNull SPARQL_Parser.DefprefixContext ctx) { }
+
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
+	@Override public void enterQuestinvar(@NotNull SPARQL_Parser.QuestinvarContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
+	@Override public void exitQuestinvar(@NotNull SPARQL_Parser.QuestinvarContext ctx) { }
+
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
+	@Override public void enterSelectQuery(@NotNull SPARQL_Parser.SelectQueryContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
+	@Override public void exitSelectQuery(@NotNull SPARQL_Parser.SelectQueryContext ctx) { }
+
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
+	@Override public void enterPrefixnames(@NotNull SPARQL_Parser.PrefixnamesContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
+	@Override public void exitPrefixnames(@NotNull SPARQL_Parser.PrefixnamesContext ctx) { }
+
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
+	@Override public void enterVariable(@NotNull SPARQL_Parser.VariableContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
+	@Override public void exitVariable(@NotNull SPARQL_Parser.VariableContext ctx) { }
 
 	/**
 	 * {@inheritDoc}
