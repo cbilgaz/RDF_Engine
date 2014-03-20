@@ -14,23 +14,19 @@ ntriplesDoc
 	;
 	
 triple
-    : subject predicate object DOT NEWLINE?
+    : subject predicate object DOT
     ;
     
 predicate
-	: variables | HTML_STRING | MARK_STRING | LITERAL_STRING
+	: variable | HTML_STRING | MARK_STRING | LITERAL_STRING
 	;
 
 subject
-	: variables | HTML_STRING | MARK_STRING | LITERAL_STRING
+	: variable | HTML_STRING | MARK_STRING | LITERAL_STRING
 	;
 
 object
-	: variables | HTML_STRING | MARK_STRING | LITERAL_STRING
-	;
-
-variables
-	: variable
+	: variable | HTML_STRING | MARK_STRING | LITERAL_STRING
 	;
 	
 variable
@@ -43,5 +39,4 @@ questionvar
 
 dolarvar
     : DOLAR MARK_STRING
-    ;
- 
+    ; 

@@ -1,17 +1,16 @@
 package ua.dbproject.parsers;
 
+import java.io.FileInputStream;
 import java.util.Arrays;
 import java.util.Iterator;
 import java.util.Map;
 import java.util.concurrent.Future;
-
 import javax.swing.JDialog;
 
 import org.antlr.v4.misc.OrderedHashMap;
 import org.antlr.v4.runtime.ANTLRInputStream;
 import org.antlr.v4.runtime.CommonTokenStream;
 import org.antlr.v4.runtime.RuleContext;
-import org.antlr.v4.runtime.tree.ErrorNode;
 import org.antlr.v4.runtime.tree.ParseTreeWalker;
 
 import ua.dbproject.parsers.SPARQL_Parser.DefprefixContext;
@@ -45,14 +44,9 @@ public class Joy {
 	 *             the exception
 	 */
 	public static void main(String[] args) throws Exception {
-
 		ErrorListener errorListenner = new ErrorListener();
-
-		ANTLRInputStream input = new ANTLRInputStream(
-				"SELECT $station, ?name\n "
-						+ "WHERE   {"
-						+ "?station onto:owner dbpedia:National_Railway_Company_of_Belgium .\n"
-						+ "?station onto:name ?name .\n }");
+		ANTLRInputStream input = new ANTLRInputStream((new FileInputStream(
+				"testfolder/sparql_1.txt")));
 
 		SPARQLexer lexer = new SPARQLexer(input);
 		CommonTokenStream tokens = new CommonTokenStream(lexer);
@@ -60,27 +54,25 @@ public class Joy {
 		parser.removeErrorListeners();
 		parser.addErrorListener(errorListenner);
 		RuleContext tree = parser.query();
-		// ParseTree tree = parser.prog(); //ParseTree -> RuleContext
+
+		// ParseTree tree = parser.prog(); // ParseTree -> RuleContext
 		// create a standard ANTLR parse tree walker
 		if (errorListenner.isEmpty()) {
 			ParseTreeWalker walker = new ParseTreeWalker();
-
 			// create listener then feed to walker
-			PropertyFileLoader loader = new PropertyFileLoader();
+			SPARQLRuleListener loader = new SPARQLRuleListener();
 			walker.walk(loader, tree); // walk parse tree
-			System.out.println(loader.props); // print results
-
-			Future<JDialog> futureDialog = tree.inspect(Arrays.asList(parser
-					.getRuleNames()));
-			futureDialog.get();
-			// Utils.waitForClose(futureDialog.get());
+			System.out.println(loader.querySparql.isDistinct); // print results
 		} else {
 			Iterator<ErrorHandler> errorList = errorListenner.getErrorList()
 					.iterator();
 			while (errorList.hasNext()) {
 				System.err.println(errorList.next());
 			}
-
 		}
+		Future<JDialog> futureDialog = tree.inspect(Arrays.asList(parser
+				.getRuleNames()));
+		futureDialog.get();
+		// Utils.waitForClose(futureDialog.get());
 	}
 }

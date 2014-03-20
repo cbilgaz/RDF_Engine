@@ -61,7 +61,7 @@ public class ErrorHandler extends AbstractErrorHandler {
 
 	@Override
 	public String toString() {
-		return "> line " + getLineNumber() + ":" + getErrorMessage();
+		return ">> line " + getLineNumber() + ":" + getErrorMessage();
 	}
 
 }

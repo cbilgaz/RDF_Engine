@@ -124,19 +124,6 @@ public class TTL_BaseListener implements TTL_Listener {
 	 * <p/>
 	 * The default implementation does nothing.
 	 */
-	@Override public void enterVariables(@NotNull TTL_Parser.VariablesContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 * <p/>
-	 * The default implementation does nothing.
-	 */
-	@Override public void exitVariables(@NotNull TTL_Parser.VariablesContext ctx) { }
-
-	/**
-	 * {@inheritDoc}
-	 * <p/>
-	 * The default implementation does nothing.
-	 */
 	@Override public void enterEveryRule(@NotNull ParserRuleContext ctx) { }
 	/**
 	 * {@inheritDoc}

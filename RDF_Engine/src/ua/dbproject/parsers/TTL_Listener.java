@@ -98,15 +98,4 @@ public interface TTL_Listener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitVariable(@NotNull TTL_Parser.VariableContext ctx);
-
-	/**
-	 * Enter a parse tree produced by {@link TTL_Parser#variables}.
-	 * @param ctx the parse tree
-	 */
-	void enterVariables(@NotNull TTL_Parser.VariablesContext ctx);
-	/**
-	 * Exit a parse tree produced by {@link TTL_Parser#variables}.
-	 * @param ctx the parse tree
-	 */
-	void exitVariables(@NotNull TTL_Parser.VariablesContext ctx);
 }

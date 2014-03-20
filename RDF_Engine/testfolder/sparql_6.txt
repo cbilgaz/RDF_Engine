@@ -1,0 +1,5 @@
+SELECT $station, ?name
+WHERE{
+	?station onto:owner dbpedia:National_Railway_Company_of_Belgium .
+	?station onto:name ?name .
+}

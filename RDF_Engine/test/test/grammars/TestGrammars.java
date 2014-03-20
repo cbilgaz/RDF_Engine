@@ -2,12 +2,15 @@ package test.grammars;
 
 import static org.junit.Assert.*;
 
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.concurrent.ExecutionException;
 
 import org.antlr.v4.runtime.ANTLRInputStream;
 import org.antlr.v4.runtime.CommonTokenStream;
 import org.antlr.v4.runtime.RuleContext;
-import org.antlr.v4.runtime.tree.ParseTree;
 import org.antlr.v4.runtime.tree.ParseTreeWalker;
 import org.junit.Test;
 
@@ -19,208 +22,110 @@ import ua.dbproject.parsers.SPARQLexer;
 
 public class TestGrammars {
 
-	@Test
-	public void testPREFIX() throws InterruptedException, ExecutionException {
-		SPARQL_BaseListener loader = new SPARQL_BaseListener();
-		ErrorListener errorListenner = new ErrorListener();
-
-		ANTLRInputStream input = new ANTLRInputStream(
-				"PREFIX dbpedia-owl: <http://dbpedia.org/ontology/>\n");
+	private SPARQL_Parser SPARQLwalking(ErrorListener errorListenner,
+			InputStream testfile) throws IOException {
+		ANTLRInputStream input = new ANTLRInputStream(testfile);
 		SPARQLexer lexer = new SPARQLexer(input);
 		CommonTokenStream tokens = new CommonTokenStream(lexer);
 		SPARQL_Parser parser = new SPARQL_Parser(tokens);
 		parser.removeErrorListeners();
 		parser.addErrorListener(errorListenner);
-		// RuleContext tree = parser.defprefix();
+		return parser;
+	}
 
-		ParseTree tree = parser.defprefix(); // ParseTree -> RuleContext
-		// create a standard ANTLR parse tree walker
-		ParseTreeWalker walker = new ParseTreeWalker();
-		// create listener then feed to walker
-
-		walker.walk(loader, tree); // walk parse tree
-
+	@Test
+	public void testPREFIX() throws InterruptedException, ExecutionException,
+			FileNotFoundException, IOException {
+		ErrorListener errorListenner = new ErrorListener();
+		SPARQL_Parser parser = SPARQLwalking(errorListenner,
+				(new FileInputStream("testfolder/prefix.txt")));
+		parser.defprefix();
 		assertTrue("Error(s) occur(s)", errorListenner.isEmpty());
+	}
+
+	@Test
+	public void testSPARQL1() {
+		ErrorListener errorListenner = new ErrorListener();
+		SPARQL_Parser parser = null;
+		try {
+			parser = SPARQLwalking(errorListenner, (new FileInputStream(
+					"testfolder/sparql_1.txt")));
+			parser.query(); // ParseTree -> RuleContext
+			assertTrue("Error(s) occur(s)", errorListenner.isEmpty());
+		} catch (IOException e) {
+			fail("IO Exception");
+		}
 
 	}
 
 	@Test
-	public void testSPARQL1() throws InterruptedException, ExecutionException {
+	public void testSPARQL2() {
 		ErrorListener errorListenner = new ErrorListener();
-		SPARQL_BaseListener loader = new SPARQL_BaseListener();
-		ANTLRInputStream input = new ANTLRInputStream(
-				"PREFIX schema: <http://schema.org/>. \n"
-						+ "PREFIX dc: <http://purl.org/dc/terms/>.\n"
-						+ "PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .\n"
-						+ "SELECT DISTINCT ?s ?title WHERE {\n"
-						+ "?s schema:district \"1\".\n"
-						+ "?s rdf:type schema:Place.\n"
-						+ "?s dc:title ?title.\n" + "}");
-		SPARQLexer lexer = new SPARQLexer(input);
-		CommonTokenStream tokens = new CommonTokenStream(lexer);
-		SPARQL_Parser parser = new SPARQL_Parser(tokens);
-		parser.removeErrorListeners();
-		parser.addErrorListener(errorListenner);
-		// RuleContext tree = parser.defprefix();
-
-		ParseTree tree = parser.query(); // ParseTree -> RuleContext
-		// create a standard ANTLR parse tree walker
-		ParseTreeWalker walker = new ParseTreeWalker();
-		// create listener then feed to walker
-		walker.walk(loader, tree); // walk parse tree
-
-		assertTrue("Error(s) occur(s)", errorListenner.isEmpty());
-
+		SPARQL_Parser parser = null;
+		try {
+			parser = SPARQLwalking(errorListenner, (new FileInputStream(
+					"testfolder/sparql_2.txt")));
+			parser.query();
+			assertTrue("Error(s) occur(s)", errorListenner.isEmpty());
+		} catch (IOException e) {
+			fail("IO Exception");
+		}
 	}
 
 	@Test
-	public void testSPARQL2() throws InterruptedException, ExecutionException {
+	public void testSPARQL3() {
 		ErrorListener errorListenner = new ErrorListener();
-		SPARQL_BaseListener loader = new SPARQL_BaseListener();
-		ANTLRInputStream input = new ANTLRInputStream(
-				"PREFIX schema: <http://schema.org/>.\n"
-						+ "PREFIX dc: <http://purl.org/dc/terms/>.\n"
-						+ "PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .\n"
-						+ "PREFIX foaf: <http://xmlns.com/foaf/0.1/> .\n"
-						+ "SELECT ?s ?title ?district WHERE {\n"
-						+ "?s dc:title ?title.\n"
-						+ "?s schema:district ?district.\n"
-						+ "?s foaf:source \"http://austria.drupaldata.com/taxonomy_term/21\".\n"
-						+ "}");
-		SPARQLexer lexer = new SPARQLexer(input);
-		CommonTokenStream tokens = new CommonTokenStream(lexer);
-		SPARQL_Parser parser = new SPARQL_Parser(tokens);
-		parser.removeErrorListeners();
-		parser.addErrorListener(errorListenner);
-		// RuleContext tree = parser.defprefix();
-
-		ParseTree tree = parser.query(); // ParseTree -> RuleContext
-		// create a standard ANTLR parse tree walker
-		ParseTreeWalker walker = new ParseTreeWalker();
-		// create listener then feed to walker
-		walker.walk(loader, tree); // walk parse tree
-
-		assertTrue("Error(s) occur(s)", errorListenner.isEmpty());
-
+		SPARQL_Parser parser = null;
+		try {
+			parser = SPARQLwalking(errorListenner, (new FileInputStream(
+					"testfolder/sparql_3.txt")));
+			parser.query();
+			assertTrue("Error(s) occur(s)", errorListenner.isEmpty());
+		} catch (IOException e) {
+			fail("IO Exception");
+		}
 	}
 
 	@Test
-	public void testSPARQL3() throws InterruptedException, ExecutionException {
+	public void testSPARQL4() {
 		ErrorListener errorListenner = new ErrorListener();
-		SPARQL_BaseListener loader = new SPARQL_BaseListener();
-		ANTLRInputStream input = new ANTLRInputStream(
-				"PREFIX schema: <http://schema.org/>.\n"
-						+ "PREFIX dc: <http://purl.org/dc/terms/>.\n"
-						+ "PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .\n"
-						+ "SELECT ?s ?t WHERE {\n"
-						+ "?s schema:district \"18\".\n"
-						+ "?s rdf:type schema:Hospital.\n"
-						+ "?s dc:title ?t.\n" + "}\n");
-		SPARQLexer lexer = new SPARQLexer(input);
-		CommonTokenStream tokens = new CommonTokenStream(lexer);
-		SPARQL_Parser parser = new SPARQL_Parser(tokens);
-		parser.removeErrorListeners();
-		parser.addErrorListener(errorListenner);
-		// RuleContext tree = parser.defprefix();
-
-		ParseTree tree = parser.query(); // ParseTree -> RuleContext
-		// create a standard ANTLR parse tree walker
-		ParseTreeWalker walker = new ParseTreeWalker();
-		// create listener then feed to walker
-		walker.walk(loader, tree); // walk parse tree
-
-		assertTrue("Error(s) occur(s)", errorListenner.isEmpty());
-
+		SPARQL_Parser parser = null;
+		try {
+			parser = SPARQLwalking(errorListenner, (new FileInputStream(
+					"testfolder/sparql_4.txt")));
+			parser.query();
+			assertTrue("Error(s) occur(s)", errorListenner.isEmpty());
+		} catch (IOException e) {
+			fail("IO Exception");
+		}
 	}
 
 	@Test
-	public void testSPARQL4() throws InterruptedException, ExecutionException {
+	public void testSPARQL5() {
 		ErrorListener errorListenner = new ErrorListener();
-		SPARQL_BaseListener loader = new SPARQL_BaseListener();
-		ANTLRInputStream input = new ANTLRInputStream(
-				"PREFIX schema: <http://schema.org/>.\n"
-						+ "PREFIX dc: <http://purl.org/dc/terms/>.\n"
-						+ "PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .\n"
-						+ "PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#> .\n"
-						+ "PREFIX foaf: <http://xmlns.com/foaf/0.1/> .\n"
-						+ "SELECT ?s ?title ?l WHERE {\n"
-						+ "?s rdf:type schema:Hospital.\n"
-						+ "?s dc:title ?title.\n" + "?s foaf:source ?source.\n"
-						+ "?source rdfs:label ?l.\n" + "}\n");
-		SPARQLexer lexer = new SPARQLexer(input);
-		CommonTokenStream tokens = new CommonTokenStream(lexer);
-		SPARQL_Parser parser = new SPARQL_Parser(tokens);
-		parser.removeErrorListeners();
-		parser.addErrorListener(errorListenner);
-		// RuleContext tree = parser.defprefix();
-
-		ParseTree tree = parser.query(); // ParseTree -> RuleContext
-		// create a standard ANTLR parse tree walker
-		ParseTreeWalker walker = new ParseTreeWalker();
-		// create listener then feed to walker
-		walker.walk(loader, tree); // walk parse tree
-
-		assertTrue("Error(s) occur(s)", errorListenner.isEmpty());
-
+		SPARQL_Parser parser = null;
+		try {
+			parser = SPARQLwalking(errorListenner, (new FileInputStream(
+					"testfolder/sparql_5.txt")));
+			parser.query();
+			assertTrue("Error(s) occur(s)", errorListenner.isEmpty());
+		} catch (IOException e) {
+			fail("IO Exception");
+		}
 	}
 
 	@Test
-	public void testSPARQL5() throws InterruptedException, ExecutionException {
+	public void testSPARQL6() {
 		ErrorListener errorListenner = new ErrorListener();
-		SPARQL_BaseListener loader = new SPARQL_BaseListener();
-		ANTLRInputStream input = new ANTLRInputStream(
-				"PREFIX schema: <http://schema.org/>.\n"
-						+ "PREFIX dc: <http://purl.org/dc/terms/>.\n"
-						+ "PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .\n"
-						+ "PREFIX foaf: <http://xmlns.com/foaf/0.1/> .\n"
-						+ "PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#> .\n"
-						+ "SELECT ?s ?title ?source ?source_label WHERE {\n"
-						+ "?s dc:title ?title.\n"
-						+ "?s foaf:source ?source.\n"
-						+ "?source rdfs:label ?source_label.\n"
-						+ "?source foaf:city \"http://austria.drupaldata.com/taxonomy_term/1\".\n"
-						+ "}\n");
-		SPARQLexer lexer = new SPARQLexer(input);
-		CommonTokenStream tokens = new CommonTokenStream(lexer);
-		SPARQL_Parser parser = new SPARQL_Parser(tokens);
-		parser.removeErrorListeners();
-		parser.addErrorListener(errorListenner);
-		// RuleContext tree = parser.defprefix();
-
-		ParseTree tree = parser.query(); // ParseTree -> RuleContext
-		// create a standard ANTLR parse tree walker
-		ParseTreeWalker walker = new ParseTreeWalker();
-		// create listener then feed to walker
-		walker.walk(loader, tree); // walk parse tree
-
-		assertTrue("Error(s) occur(s)", errorListenner.isEmpty());
-
-	}
-
-	@Test
-	public void testSPARQL6() throws InterruptedException, ExecutionException {
-		ErrorListener errorListenner = new ErrorListener();
-		SPARQL_BaseListener loader = new SPARQL_BaseListener();
-		ANTLRInputStream input = new ANTLRInputStream(
-				"SELECT $station, ?name\n "
-						+ "WHERE   {"
-						+ "?station onto:owner dbpedia:National_Railway_Company_of_Belgium .\n"
-						+ "?station onto:name ?name .\n }");
-		SPARQLexer lexer = new SPARQLexer(input);
-		CommonTokenStream tokens = new CommonTokenStream(lexer);
-		SPARQL_Parser parser = new SPARQL_Parser(tokens);
-		parser.removeErrorListeners();
-		parser.addErrorListener(errorListenner);
-		// RuleContext tree = parser.defprefix();
-
-		ParseTree tree = parser.query(); // ParseTree -> RuleContext
-		// create a standard ANTLR parse tree walker
-		ParseTreeWalker walker = new ParseTreeWalker();
-		// create listener then feed to walker
-		walker.walk(loader, tree); // walk parse tree
-
-		assertTrue("Error(s) occur(s)", errorListenner.isEmpty());
-
+		SPARQL_Parser parser = null;
+		try {
+			parser = SPARQLwalking(errorListenner, (new FileInputStream(
+					"testfolder/sparql_6.txt")));
+			parser.query();
+			assertTrue("Error(s) occur(s)", errorListenner.isEmpty());
+		} catch (IOException e) {
+			fail("IO Exception");
+		}
 	}
 
 	@Test

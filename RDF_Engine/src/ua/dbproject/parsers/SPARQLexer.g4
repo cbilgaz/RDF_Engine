@@ -1,5 +1,4 @@
 lexer grammar SPARQLexer;
-
 /* 
 *------------------------------------
 *          		OPERANDS
@@ -9,15 +8,13 @@ lexer grammar SPARQLexer;
 LT         		: '<'   ;
 GT         		: '>'   ;
 DOT        		: '.'   ;
-SIGN			: '#'   ;
-COLON      		: ':'   ;		
+SIGN			: '#'   ; 
+COLON      		: ':'   ;	
 COMMA      		: ','   ;
-QUESTION		: '?'	;		
-LPAREN     		: '('   ;
-RPAREN     		: ')'   ;
+QUESTION		: '?'	;
 LCBRACKET		: '{'   ; 
 RCBRACKET		: '}'   ;
-ASTERISK		: '*'	;
+ASTERISK		: '*'	; 
 DOLAR			: '$'	;
 		
 /*
@@ -25,7 +22,7 @@ DOLAR			: '$'	;
 *        		  KEY WORDS
 * ---------------------------------
 */
-SELECT 		: 	[Ss][Ee][Ll][Ee][Cc][Tt];
+SELECT 		: 	[Ss][Ee][Ll][Ee][Cc][Tt]; 
 WHERE		:	[Ww][Hh][Ee][Rr][Ee];
 DISTINCT    : 	[Dd][Ii][Ss][Tt][Ii][Nn][Cc][Tt];
 PREFIX		:   [Pp][Rr][Ee][Ff][Ii][Xx];
