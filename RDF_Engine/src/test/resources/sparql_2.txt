@@ -1,0 +1,9 @@
+PREFIX schema: <http://schema.org/>.
+PREFIX dc: <http://purl.org/dc/terms/>.
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+PREFIX foaf: <http://xmlns.com/foaf/0.1/> .
+SELECT ?s ?title ?district WHERE {
+	?s dc:title ?title.
+	?s schema:district ?district.
+	?s foaf:source "http://austria.drupaldata.com/taxonomy_term/21".
+}

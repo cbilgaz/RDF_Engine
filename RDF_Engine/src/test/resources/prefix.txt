@@ -1,0 +1,1 @@
+PREFIX dbpedia-owl: <http://dbpedia.org/ontology/>

@@ -1,4 +1,4 @@
-// Generated from SPARQL_.g4 by ANTLR 4.1
+// Generated from ua\dbproject\parsers\SPARQL_.g4 by ANTLR 4.2
 package ua.dbproject.parsers;
 
   //** The SPARQL_Parser takes care of parsing SPARQL queries. */

@@ -1,4 +1,4 @@
-// Generated from SPARQL_.g4 by ANTLR 4.1
+// Generated from ua\dbproject\parsers\SPARQL_.g4 by ANTLR 4.2
 package ua.dbproject.parsers;
 
   //** The SPARQL_Parser takes care of parsing SPARQL queries. */
@@ -46,6 +46,9 @@ public class SPARQL_Parser extends Parser {
 
 	@Override
 	public String[] getRuleNames() { return ruleNames; }
+
+	@Override
+	public String getSerializedATN() { return _serializedATN; }
 
 	@Override
 	public ATN getATN() { return _ATN; }
@@ -908,7 +911,7 @@ public class SPARQL_Parser extends Parser {
 	}
 
 	public static final String _serializedATN =
-		"\3\uacf5\uee8c\u4f5d\u8b0d\u4a45\u78bd\u1b2f\u3378\3\32\u0085\4\2\t\2"+
+		"\3\u0430\ud6d1\u8206\uad2d\u4417\uaef1\u8d80\uaadd\3\32\u0085\4\2\t\2"+
 		"\4\3\t\3\4\4\t\4\4\5\t\5\4\6\t\6\4\7\t\7\4\b\t\b\4\t\t\t\4\n\t\n\4\13"+
 		"\t\13\4\f\t\f\4\r\t\r\4\16\t\16\4\17\t\17\4\20\t\20\3\2\7\2\"\n\2\f\2"+
 		"\16\2%\13\2\3\2\3\2\5\2)\n\2\3\2\3\2\3\3\3\3\3\3\3\3\5\3\61\n\3\3\3\3"+
@@ -917,7 +920,7 @@ public class SPARQL_Parser extends Parser {
 		"\3\t\3\t\3\t\3\n\5\nY\n\n\3\n\3\n\3\13\3\13\5\13_\n\13\3\13\3\13\5\13"+
 		"c\n\13\3\13\3\13\3\f\3\f\7\fi\n\f\f\f\16\fl\13\f\3\r\3\r\3\r\3\r\3\r\3"+
 		"\16\3\16\3\16\3\16\5\16w\n\16\3\17\3\17\3\17\3\17\5\17}\n\17\3\20\3\20"+
-		"\3\20\3\20\5\20\u0083\n\20\3\20\2\21\2\4\6\b\n\f\16\20\22\24\26\30\32"+
+		"\3\20\3\20\5\20\u0083\n\20\3\20\2\2\21\2\4\6\b\n\f\16\20\22\24\26\30\32"+
 		"\34\36\2\2\u008b\2#\3\2\2\2\4,\3\2\2\2\6\64\3\2\2\2\b\66\3\2\2\2\nC\3"+
 		"\2\2\2\fO\3\2\2\2\16Q\3\2\2\2\20T\3\2\2\2\22X\3\2\2\2\24\\\3\2\2\2\26"+
 		"f\3\2\2\2\30m\3\2\2\2\32v\3\2\2\2\34|\3\2\2\2\36\u0082\3\2\2\2 \"\5\4"+
@@ -943,7 +946,7 @@ public class SPARQL_Parser extends Parser {
 		"\u0082\u0080\3\2\2\2\u0082\u0081\3\2\2\2\u0083\37\3\2\2\2\22#(\608<?E"+
 		"JOX^bjv|\u0082";
 	public static final ATN _ATN =
-		ATNSimulator.deserialize(_serializedATN.toCharArray());
+		new ATNDeserializer().deserialize(_serializedATN.toCharArray());
 	static {
 		_decisionToDFA = new DFA[_ATN.getNumberOfDecisions()];
 		for (int i = 0; i < _ATN.getNumberOfDecisions(); i++) {
